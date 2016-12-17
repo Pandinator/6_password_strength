@@ -31,6 +31,6 @@ if __name__ == '__main__':
     password = input("Enter you password: \n")
     blacklist = load_password_blacklist(blacklist_path)
     rate = get_password_strength(password, blacklist)
-    print("Your password is {}{}".format(str(rate), "/10"))
+    print("Your password is {}/10".format(str(rate)))
 
     
