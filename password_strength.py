@@ -13,13 +13,15 @@ def get_password_strength(password, blacklist):
         return 1
     else:
         password_strength = 1
-        password_strength += 3 * int(password not in blacklist)
-        password_strength += 1 * int(password.lower() != password and
-                                     password.upper() != password)
-        password_strength += 2 * int(len(password) > 12)
-        if re.findall(r'[\d]', password):
-            password_strength += 1
-        if re.findall(r'\S', password):
+        if password.lower() != password and password.upper() != password: 
+            password_strength += 1 
+        if password not in blacklist: 
+            password_strength += 3 
+        if re.findall(r'[\d]', password): 
+            password_strength += 1 
+        if re.findall(r'\S', password): 
+            password_strength += 2 
+        if len(password) > 12: 
             password_strength += 2
         return (password_strength)
 
@@ -30,3 +32,4 @@ if __name__ == '__main__':
     blacklist = load_password_blacklist(blacklist_path)
     rate = get_password_strength(password, blacklist)
     print("Your password is {}/10".format(str(rate)))
+    
